@@ -68,7 +68,7 @@ const Form = () => {
             </form>
 
 
-            <p className='text-gray mt-24'>© Hotelmu 2023 - All Rights Reserved </p>
+            <p className='text-gray mt-24'>© AlnaSkyline 2023 - All Rights Reserved </p>
             
         </div>
     </div>

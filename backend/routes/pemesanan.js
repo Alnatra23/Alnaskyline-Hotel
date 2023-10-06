@@ -7,6 +7,8 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+const { Op } = require("sequelize");
+
 //import model
 const model = require("../models/index");
 const pemesanan = model.pemesanan;
@@ -25,7 +27,7 @@ const sequelize = require(`sequelize`);
 const operator = sequelize.Op;
 
 //get data
-app.get("/", (req, res) => {
+app.get("/", auth, (req, res) => {
   pemesanan
     .findAll({
       include: [
@@ -55,39 +57,10 @@ app.get("/", (req, res) => {
     });
 });
 
-app.get("/findById/:id", auth, (req,res) => {
-    pemesanan.findAll({ where: {id_customer: req.params.id},
-        include: [
-            {
-                model: user, as:'user'
-            },
-            {
-                model: tipe_kamar, as:'tipe_kamar'
-            },
-            {
-                model: customer, as:'customer'
-            }
-        ]
-    })
-        .then(result => {
-            res.json({
-                pemesanan : result
-            })
-        })
-        .catch(error => {
-            res.json({
-                message: error.message
-            })
-        })
-})
-
-
-
-//get data by id
-app.get("/:id", (req, res) => {
+app.get("/findById/:id", auth, (req, res) => {
   pemesanan
-    .findOne({
-      where: { id_pemesanan: req.params.id },
+    .findAll({
+      where: { id_customer: req.params.id },
       include: [
         {
           model: user,
@@ -115,9 +88,9 @@ app.get("/:id", (req, res) => {
     });
 });
 
-//get order detail by order
-app.get("/idOrder/:id_pemesanan", async (req, res) => {
-  let sql = `select * from pemesanan inner join detail_pemesanan on pemesanan.id_pemesanan = detail_pemesanan.id_pemesanan WHERE pemesanan.id_pemesanan = ${req.params.id_pemesanan};`;
+//get data by id
+app.get("/:id", auth, async (req, res) => {
+  let sql = `select tipe_kamar.*, customer.*,kamar.* ,detail_pemesanan.*,pemesanan.*  from pemesanan inner join detail_pemesanan on pemesanan.id_pemesanan = detail_pemesanan.id_pemesanan join kamar on kamar.id_kamar = detail_pemesanan.id_kamar join customer on customer.id_customer = pemesanan.id_customer join tipe_kamar on tipe_kamar.id_tipe_kamar = pemesanan.id_tipe_kamar WHERE pemesanan.id_pemesanan  = ${req.params.id}`;
 
   try {
     const data = await pemesanan.sequelize.query(sql, {
@@ -130,7 +103,94 @@ app.get("/idOrder/:id_pemesanan", async (req, res) => {
   }
 });
 
-app.post("/", async (req, res) => {
+//get order detail by order
+app.get("/idOrder/:id_pemesanan", auth, async (req, res) => {
+  let sql = `select * from pemesanan inner join detail_pemesanan on pemesanan.id_pemesanan = detail_pemesanan.id_pemesanan join kamar on kamar.id_kamar = detail_pemesanan.id_kamar WHERE pemesanan.id_pemesanan  = ${req.params.id_pemesanan}`;
+
+  try {
+    const data = await pemesanan.sequelize.query(sql, {
+      model: pemesanan,
+      mapToModel: true,
+    });
+    res.status(200).json(data);
+  } catch (error) {
+    res.sendStatus(500);
+  }
+});
+
+app.post("/findByNamaTamu", auth, (req, res) => {
+  pemesanan
+    .findAll({
+      where: {
+        [Op.or]: [{ nama_tamu: { [Op.like]: "%" + req.body.nama_tamu + "%" } }],
+      },
+      include: [
+        {
+          model: user,
+          as: "user",
+        },
+        {
+          model: tipe_kamar,
+          as: "tipe_kamar",
+        },
+        {
+          model: customer,
+          as: "customer",
+        },
+      ],
+    })
+    .then((result) => {
+      res.json({
+        pemesanan: result,
+      });
+    })
+    .catch((error) => {
+      res.json({
+        message: error.message,
+      });
+    });
+});
+
+
+//post data
+app.post("/search", auth, (req, res) => {
+  const tgl_check_in = new Date(req.body.tgl_check_in);
+  pemesanan
+    .findAll({
+      where: { tgl_check_in },
+      include: [
+        {
+          model: user,
+          as: "user",
+        },
+        {
+          model: tipe_kamar,
+          as: "tipe_kamar",
+        },
+        {
+          model: customer,
+          as: "customer",
+        },
+        {
+          model: detail_pemesanan,
+          as: "detail_pemesanan",
+        },
+      ],
+    })
+    .then((result) => {
+      // console.log(tgl_check_in);
+      res.json({
+        pemesanan: result,
+      });
+    })
+    .catch((error) => {
+      res.json({
+        message: error.message,
+      });
+    });
+});
+
+app.post("/",  async (req, res) => {
   let tw = Date.now();
 
   let numberRandom = Math.floor(
@@ -149,7 +209,6 @@ app.post("/", async (req, res) => {
     status_pemesanan: req.body.status_pemesanan,
     id_user: req.body.id_user,
   };
-  console.log(req.body.id_tipe_kamar);
 
   // rooms data
   let dataKamar = await kamar.findAll({
@@ -238,7 +297,7 @@ app.post("/", async (req, res) => {
         return res.json({
           data: result,
           statusCode: res.statusCode,
-          message: "New user has been created",
+          message: "New booking has been created",
         });
       })
       .catch((error) => {
@@ -250,7 +309,7 @@ app.post("/", async (req, res) => {
 });
 
 //edit data by id
-app.put("/:id", (req, res) => {
+app.put("/:id", auth, (req, res) => {
   let param = {
     id_pemesanan: req.params.id,
   };
@@ -282,7 +341,7 @@ app.put("/:id", (req, res) => {
 });
 
 //delete data by id
-app.delete("/:id", (req, res) => {
+app.delete("/:id" ,auth , (req, res) => {
   let param = {
     id_pemesanan: req.params.id,
   };

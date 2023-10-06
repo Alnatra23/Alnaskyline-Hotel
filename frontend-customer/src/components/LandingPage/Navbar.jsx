@@ -8,7 +8,7 @@ import { navLinks } from "../../constants";
 const Navbar = () => {
   const [toggle, setToggle] = useState(false);
   let navigate = useNavigate();
-
+  console.log("hello : ", navLinks);
   function logout() {
     sessionStorage.clear();
     navigate("/login");
@@ -64,10 +64,9 @@ const Navbar = () => {
           </ul>
         </div>
       </div>
-
       <button
         onClick={logout}
-        className="w-[93px] h-[52px] text-white bg-black rounded-lg hidden sm:block"
+        className="w-[93px] h-[52px] text-white bg-black rounded-lg sm:block"
       >
         Keluar
       </button>

@@ -7,6 +7,8 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
+const { Op } = require("sequelize")
+
 //import model
 const model = require('../models/index');
 const kamar = model.kamar
@@ -18,7 +20,7 @@ const jwt = require("jsonwebtoken")
 const SECRET_KEY = "TryMe"
 
 //get data
-app.get("/", (req,res) => {
+app.get("/", auth, (req,res) => {
     kamar.findAll({include: [{model: tipe_kamar, as:'tipe_kamar'}]})
         .then(result => {
             res.json({
@@ -33,7 +35,7 @@ app.get("/", (req,res) => {
 })
 
 //get data by id
-app.get("/:id", (req, res) =>{
+app.get("/:id", auth, (req, res) =>{
     kamar.findOne({ where: {id_kamar: req.params.id}})
     .then(result => {
         res.json({
@@ -47,9 +49,31 @@ app.get("/:id", (req, res) =>{
     })
 })
 
+//search data by nomor_kamar
+app.post("/search", (req, res) => {
+    kamar
+      .findAll({
+        include: [{model: tipe_kamar, as:'tipe_kamar'}],
+        where: {
+          [Op.or]: [
+            { nomor_kamar: req.body.nomor_kamar},
+          ],
+        },
+      })
+      .then((result) => {
+        res.json({
+          kamar: result,
+        });
+      })
+      .catch((error) => {
+        res.json({
+          message: error.message,
+        });
+      });
+  });
 
 //post data
-app.post("/", (req,res) => {
+app.post("/", auth, (req,res) => {
     let data = {
         nomor_kamar : req.body.nomor_kamar,
         id_tipe_kamar : req.body.id_tipe_kamar
@@ -69,7 +93,7 @@ app.post("/", (req,res) => {
 })
 
 //edit data by id
-app.put("/:id", (req,res) => {
+app.put("/:id", auth, (req,res) => {
     let param = {
         id_kamar : req.params.id
     }
@@ -91,7 +115,7 @@ app.put("/:id", (req,res) => {
 })
 
 //delete data by id
-app.delete("/:id", (req,res) => {
+app.delete("/:id", auth, (req,res) => {
     let param = {
         id_kamar : req.params.id
     }

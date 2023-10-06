@@ -19,7 +19,7 @@ const ListKamar = ({ data }) => {
           <h1 className="text-xl font-medium">
             Rekomendasi Tipe Kamar Terbaik!
           </h1>
-          <p className="text-sm text-gray">Iki Ngko Breadcrumbs</p>
+          <p className="text-sm text-gray">Rekomendasi Tipe Kamar</p>
         </div>
       </div>
 
