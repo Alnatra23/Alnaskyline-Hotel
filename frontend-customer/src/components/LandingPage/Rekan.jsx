@@ -13,11 +13,11 @@ const Rekan = () => {
       </div>
 
       <div className='flex justify-between mt-10'>
-        <img className='h-14' src={logoRekan1} alt="rekan1" />
-        <img className='h-14' src={logoRekan2} alt="rekan2" />
-        <img className='h-14' src={logoRekan3} alt="rekan3" />
-        <img className='h-14' src={logoRekan4} alt="rekan4" />
-        <img className='h-14' src={logoRekan5} alt="rekan5" />
+        <img className='h-20 w-45' src={logoRekan1} alt="rekan1" />
+        <img className='h-24 w-70' src={logoRekan2} alt="rekan2" />
+        <img className='h-12 w-35' src={logoRekan3} alt="rekan3" />
+        <img className='h-20 w-45' src={logoRekan4} alt="rekan4" />
+        <img className='h-20 w-45' src={logoRekan5} alt="rekan5" />
 
       </div>
     </div>

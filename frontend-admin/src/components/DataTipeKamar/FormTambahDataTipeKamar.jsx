@@ -57,7 +57,7 @@ const FormTambahDataKamar = () => {
   return (
     <div className='flex flex-col p-8 stroke-box mt-14 w-full'>
         <div className='mt-4 stroke-form'>
-            <h1 className='text-xl bg-yellow-400 font-semibold mb-4'>Tambah Data Tipe Kamar</h1>
+            <h1 className='text-xl  font-semibold mb-4'>Tambah Data Tipe Kamar</h1>
         </div>
 
         <form onSubmit={AddData} className='flex flex-col mb-4 stroke-form'>
@@ -79,10 +79,10 @@ const FormTambahDataKamar = () => {
             <label htmlFor="desc" className='text-gray'>Deskripsi</label>
             <textarea onChange={(e) => setDeskripsi(e.target.value)} value={deskripsi} className="bg-form p-4 border-r-[16px] border-r-[#f6f6f6] mt-2" name="desc" id="" cols="30" rows="10" placeholder='Masukkan Deskripsi'></textarea>
             <div className='w-full flex'>
-                <Link to="/dataTipeKamar" className='w-1/2 h-[52px] text-blue primary-stroke rounded-lg hidden sm:flex mt-4 sm:justify-center sm:items-center '>
+                <Link to="/dataTipeKamar" className='w-1/2 h-[52px] text-black border-2 rounded-lg hidden sm:flex mt-4 sm:justify-center sm:items-center '>
                     Kembali
                 </Link>
-                <button className='w-1/2 h-[52px] text-white primary-bg rounded-lg hidden sm:block mt-4 ml-4'>
+                <button className='w-1/2 h-[52px] text-white bg-black rounded-lg hidden sm:block mt-4 ml-4'>
                     Tambah
                 </button>
             </div>

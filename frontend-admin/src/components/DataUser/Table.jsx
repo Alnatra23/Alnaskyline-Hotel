@@ -93,7 +93,7 @@ function Delete (id) {
         <button>
           <Link
             className="p-4 text-white bg-yellow-400 rounded-lg hidden mb-4 sm:block"
-            to="/addDataKamar"
+            to="/addDataUser"
           >
             Tambah Data
           </Link>
@@ -108,7 +108,7 @@ function Delete (id) {
             className="block w-full px-4 py-2 text-black-700 bg-white border rounded-full focus:border-primary-400 focus:ring-primary-300 focus:outline-none focus:ring focus:ring-opacity-40"
             placeholder="Search..."
           />
-          <button className="px-4 text-white primary-bg rounded-full ">
+          <button className="px-4 text-white bg-black rounded-full ">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="w-5 h-5"

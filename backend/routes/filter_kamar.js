@@ -15,19 +15,8 @@ app.post('/', async (req, res) => {
 
     let checkInDate = req.body.check_in_date;
     let checkOutDate = req.body.check_out_date;
-
+  
     let roomData = await Tp_kamar.findAll({
-        // attributes: ["id_tipe_kamar", "nama_tipe_kamar"],
-        include: [
-            {
-                model: Kamar,
-                as: "kamar",
-            },
-        ],
-    });
-
-    let roomBookedData = await Tp_kamar.findAll({
-        attributes: ["id_tipe_kamar", "nama_tipe_kamar"],
         include: [
             {
                 model: Kamar,
@@ -42,32 +31,15 @@ app.post('/', async (req, res) => {
                                 [operator.between]: [checkInDate, checkOutDate],
                             },
                         },
+                        required: false, // Use this to perform a left join
                     },
                 ],
             },
         ],
     });
-    console.log(roomBookedData)
-
-    let available = [];
+  
     let availableByType = [];
-
-    for (let i = 0; i < roomData.length; i++) {
-        roomData[i].kamar.forEach((kamar) => {
-            let isBooked = false;
-            roomBookedData.forEach((booked) => {
-                booked.kamar.forEach((bookedRoom) => {
-                    if (kamar.id === bookedRoom.id) {
-                        isBooked = true;
-                    }
-                });
-            });
-            if (!isBooked) {
-                available.push(kamar);
-            }
-        });
-    }
-
+  
     for (let i = 0; i < roomData.length; i++) {
         let roomType = {};
         roomType.id_tipe_kamar = roomData[i].id_tipe_kamar;
@@ -76,17 +48,20 @@ app.post('/', async (req, res) => {
         roomType.deskripsi = roomData[i].deskripsi;
         roomType.foto = roomData[i].foto;
         roomType.kamar = [];
-        available.forEach((kamar) => {
-            roomType.kamar.push(kamar);
-            // if (kamar.id_tipe_kamar === roomData[i].id) {
-            // }
+  
+        // Filter kamar yang tersedia
+        roomData[i].kamar.forEach((kamar) => {
+            if (!kamar.detail_pemesanan || kamar.detail_pemesanan.length === 0) {
+                roomType.kamar.push(kamar);
+            }
         });
-        availableByType.push(roomType);
-        // if (roomType.kamar.length > 0) {
-        //     console.log(roomType.tipe_kamar.dataValues)
-        // }
+  
+        if (roomType.kamar.length > 0) {
+            availableByType.push(roomType);
+        }
     }
-    return res.json({  room: availableByType });
-})
+    
+    return res.json({ room: availableByType });
+  })
 
 module.exports = app

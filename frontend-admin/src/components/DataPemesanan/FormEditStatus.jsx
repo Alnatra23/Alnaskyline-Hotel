@@ -63,7 +63,7 @@ const FormEditStatus = () => {
                 </select>
             </div>
         <div className='w-full flex'>
-            <Link to="/dataPemesanan" className='w-1/2 h-[52px] text-blue black-stroke rounded-lg hidden sm:flex mt-4 sm:justify-center sm:items-center '>
+            <Link to="/dataPemesanan" className='w-1/2 h-[52px] text-black black-stroke rounded-lg hidden sm:flex mt-4 sm:justify-center sm:items-center '>
               Kembali
             </Link>
             <button className='w-1/2 h-[52px] text-white bg-black rounded-lg hidden sm:block mt-4 ml-4'>

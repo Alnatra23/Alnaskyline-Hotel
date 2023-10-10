@@ -66,10 +66,10 @@ const Detail = () => {
         </div>
 
         <div className='flex w-full mt-4'>
-            <button className='w-1/2 h-[52px] sm:flex justify-center items-center primary-text primary-stroke rounded-lg hidden mr-4'>
+            <button className='w-1/2 h-[52px] sm:flex justify-center items-center text-black rounded-lg hidden mr-4'>
                 kembali
             </button>
-            <button className='w-1/2 h-[52px] sm:flex justify-center items-center text-white primary-bg rounded-lg hidden'>
+            <button className='w-1/2 h-[52px] sm:flex justify-center items-center text-white bg-black brounded-lg hidden'>
                 Cetak
             </button>
         </div>

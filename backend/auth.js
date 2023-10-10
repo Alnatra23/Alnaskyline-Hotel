@@ -1,6 +1,9 @@
 const jwt = require("jsonwebtoken")
 const SECRET_KEY = "TryMe"
+
 auth = (req, res, next) => {
+
+    
     let header = req.headers.authorization
     let token = header && header.split(" ")[1]
 

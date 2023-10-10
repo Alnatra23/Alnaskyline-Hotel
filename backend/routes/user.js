@@ -48,7 +48,8 @@ app.post("/auth", async (req,res) => {
         res.json({
             logged: true,
             data: result,
-            token: token
+            token: token,
+            nama_user: result.nama_user
         })
     }else{
         res.json({

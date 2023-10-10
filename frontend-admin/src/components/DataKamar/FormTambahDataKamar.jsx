@@ -64,7 +64,7 @@ const FormDataKamar = () => {
   return (
     <div className="flex flex-col p-8 stroke-box mt-14 w-full">
       <div className="mt-4 stroke-form">
-        <h1 className="text-2xl bg-yellow-400 font-bold mb-4">Tambah Data Kamar</h1>
+        <h1 className="text-2xl font-bold mb-4">Tambah Data Kamar</h1>
       </div>
 
       <form onSubmit={AddData} className="flex flex-col mb-4 stroke-form">
@@ -109,11 +109,11 @@ const FormDataKamar = () => {
         <div className="w-full flex">
           <Link
             to="/dataKamar"
-            className="w-1/2 h-[52px] text-blue primary-stroke rounded-lg hidden sm:flex mt-4 sm:justify-center sm:items-center"
+            className="w-1/2 h-[52px] text-black border-2 rounded-lg hidden sm:flex mt-4 sm:justify-center sm:items-center"
           >
             Kembali
           </Link>
-          <button className="w-1/2 h-[52px] text-white primary-bg rounded-lg hidden sm:block mt-4 ml-4">
+          <button className="w-1/2 h-[52px] text-white bg-black rounded-lg hidden sm:block mt-4 ml-4">
             Tambah
           </button>
         </div>

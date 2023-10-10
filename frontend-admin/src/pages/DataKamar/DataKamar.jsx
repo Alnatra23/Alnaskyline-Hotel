@@ -2,8 +2,14 @@ import React from 'react'
 import styles from "../../style";
 import {Navbar, Footer} from '../../components/General';
 import { Table } from '../../components/DataKamar';
+import { useEffect } from "react";
 
 const DataKamar = () => {
+  useEffect(() => {
+    if ((sessionStorage.getItem("role")) == "resepsionis") {
+      window.location.href = "/dataPemesanan";
+    }
+  });
   return (
     <div className="bg-white w-full overflow-hidden"> 
       <div className={`${styles.paddingX} ${styles.flexCenter}`}>

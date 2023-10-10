@@ -1,26 +1,32 @@
-import React from 'react'
-import { useState } from 'react'
-import { Link,useNavigate } from 'react-router-dom'
-
-import {close, close2, logo, menu, menu2} from '../../assets'
-import {navLinks} from '../../constants'
+import React from 'react';
+import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { close, close2, logo, menu, menu2 } from '../../assets';
+import { navLinks } from '../../constants';
 
 const Navbar = () => {
-
-  const [toggle, setToggle] = useState(false)
-  let navigate = useNavigate()
+  const [toggle, setToggle] = useState(false);
+  let navigate = useNavigate();
 
   function logout() {
-    sessionStorage.clear()
-    navigate('/loginAdmin')
+    sessionStorage.clear();
+    navigate('/loginAdmin');
   }
 
+  const userName = sessionStorage.getItem('nama');
+  const userRole = sessionStorage.getItem('role');
+  const greeting = `${userName} as ${userRole}`;
 
   return (
-    <nav className='w-full flex py-6 justify-between items-center navbar'>
-      <img src={logo} alt="hoobank" className='w-[200] h-[90px]' />
+    <nav className='w-full flex flex-col py-6 justify-between items-center sm:flex-row navbar'>
+      <div className='flex flex-col items-center'>
+        <img src={logo} alt="AlnaSkyline-logo" className='w-[260px] h-[90px]' />
+        <p className='font-bold text-black mt-1 mr-4'>
+          {greeting}
+        </p>
+      </div>
 
-    {/* Desktop Breakpoints */}
+      {/* Desktop Breakpoints */}
       <ul className='list-none sm:flex hidden justify-end items-center flex-1 mr-10'>
         {navLinks.map((nav, index) => (
           <li key={nav.id} className={`font-poppins font-medium cursor-pointer text-[14px] ${index === navLinks.length - 1 ? 'mr-0' : 'mr-8'}  text-gray ${sessionStorage.getItem('role') === 'resepsionis' ? 'hidden' : ' '}`}>
@@ -36,33 +42,33 @@ const Navbar = () => {
         </li>
       </ul>
 
-    {/* Mobile Breakpoints */}
+      {/* Mobile Breakpoints */}
       <div className='sm:hidden flex flex-1 justify-end items-center z-10'>
-          <img src={toggle ? close2 : menu2} alt="menu" className='w-[28px] h-[28px] object-contain' onClick={() => setToggle((prev) => !prev)}/>
+        <img src={toggle ? close2 : menu2} alt="menu" className='w-[28px] h-[28px] object-contain' onClick={() => setToggle((prev) => !prev)}/>
 
-          <div className={`${toggle ? 'flex' : 'hidden'} p-6 gray-bg absolute top-32 right-0 mx-4 my-2 min-w-[140px] rounded-xl sidebar`}>
-            <ul className='list-none flex flex-col justify-end items-center flex-1'>
-              {navLinks.map((nav, index) => (
-                <li key={nav.id} className={`font-poppins font-medium cursor-pointer text-[14px] ${index === navLinks.length - 1 ? 'mr-0' : 'mb-4'} text-gray ${sessionStorage.getItem('role') === 'resepsionis' ? 'hidden' : ' '}`}>
-                  <Link to={`${nav.to}`}>
-                    {nav.title}
-                  </Link>
-                </li>
-              ))}
+        <div className={`${toggle ? 'flex' : 'hidden'} p-6 gray-bg absolute top-32 right-0 mx-4 my-2 min-w-[140px] rounded-xl sidebar`}>
+          <ul className='list-none flex flex-col justify-end items-center flex-1'>
+            {navLinks.map((nav, index) => (
+              <li key={nav.id} className={`font-poppins font-medium cursor-pointer text-[14px] ${index === navLinks.length - 1 ? 'mr-0' : 'mb-4'} text-gray ${sessionStorage.getItem('role') === 'resepsionis' ? 'hidden' : ' '}`}>
+                <Link to={`${nav.to}`}>
+                  {nav.title}
+                </Link>
+              </li>
+            ))}
             <li  className={`font-poppins font-medium cursor-pointer text-[14px] text-gray ml-8`}>
               <Link to='/pemesanan' className={`${sessionStorage.getItem('role') === 'admin' ? 'hidden' : ' '}`}>
                 Pemesanan
               </Link>
             </li>
-            </ul>
-          </div>
+          </ul>
+        </div>
       </div>
 
       <button onClick={logout} className='w-[93px] h-[52px] text-white bg-black rounded-lg hidden sm:block'>
         Keluar
       </button>
     </nav>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;

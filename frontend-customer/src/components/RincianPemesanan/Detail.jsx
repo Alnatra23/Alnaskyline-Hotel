@@ -154,13 +154,13 @@ const Detail = () => {
       <div className="flex w-full mt-4">
         <Link
           to="/riwayat"
-          className="w-1/2 h-[52px] sm:flex justify-center items-center primary-text primary-stroke rounded-lg hidden mr-4"
+          className="w-1/2 h-[52px] sm:flex justify-center secondary-stroke items-center text-black rounded-lg hidden mr-4"
         >
-          kembali
+          Kembali
         </Link>
         <button
           onClick={handlePrint}
-          className="w-1/2 h-[52px] sm:flex justify-center items-center text-white primary-bg rounded-lg hidden"
+          className="w-1/2 h-[52px] sm:flex justify-center items-center text-white bg-black rounded-lg hidden"
         >
           Cetak
         </button>

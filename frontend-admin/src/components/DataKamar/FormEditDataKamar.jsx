@@ -89,10 +89,10 @@ const FormEditDataKamar = () => {
                 </div>
             </div>
             <div className='w-full flex'>
-                <Link to="/dataKamar" className='w-1/2 h-[52px] text-blue black-stroke rounded-lg hidden sm:flex mt-4 sm:justify-center sm:items-center'>
+                <Link to="/dataKamar" className='w-1/2 h-[52px] text-black border-2 rounded-lg hidden sm:flex mt-4 sm:justify-center sm:items-center'>
                     Kembali
                 </Link>
-                <button className='w-1/2 h-[52px] text-white black-text rounded-lg hidden sm:block mt-4 ml-4'>
+                <button className='w-1/2 h-[52px] text-white bg-black rounded-lg hidden sm:block mt-4 ml-4'>
                     Ubah
                 </button>
             </div>

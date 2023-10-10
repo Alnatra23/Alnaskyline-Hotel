@@ -2,6 +2,11 @@ import React, { useState, useEffect } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import moment from "moment";
+import { toast } from 'react-toastify';
+import Swal from 'sweetalert2';
+import 'react-toastify/dist/ReactToastify.css'; // Import the CSS for styling
+import 'sweetalert2/dist/sweetalert2.min.css'; // Import the CSS for styling
+
 
 const Form = () => {
   let [namaCustomer, setNamaCustomer] = useState();
@@ -62,27 +67,36 @@ const Form = () => {
       id_user: null,
     };
     console.log(data);
-    if (window.confirm("Selesai Menambahkan Data Baru?")) {
-      axios
-        .post(url, data, {
-          headers: {
-            Authorization: "Bearer " + sessionStorage.getItem("token"),
-          },
-        })
-        .then((response) => {
-          if (response.data.message === "Room not available!") {
-            window.alert("Pilih kamar lain, kamar ini sudah dipesan ");
-            navigate("/cariKamar");
-          } else {
-            navigate("/riwayat");
-          }
-          console.log(response.data);
-        })
-        .catch((error) => {
-          console.log(error);
+    Swal.fire({
+      title: 'Sudah yakin ingin memesan kamar ini?',
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonText: 'Ya',
+      cancelButtonText: 'Batal',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axios
+          .post(url, data, {
+            headers: {
+              Authorization: "Bearer " + sessionStorage.getItem("token"),
+            },
+          })
+          .then((response) => {
+            if (response.data.message === "Room not available!") {
+              toast.error('Pilih kamar lain kamar ini sudah dipesan');
+              navigate("/cariKamar");
+            } else {
+              navigate("/riwayat");
+            }
+            console.log(response.data);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }
         });
     }
-  }
+  
   // console.log(sessionStorage.getItem('id_tipe_kamar'))
 
   const formatStartDt = moment(sessionStorage.getItem("check_in")).format(
@@ -232,7 +246,7 @@ const Form = () => {
 
         <button
           type="submit"
-          className="w-full h-[52px] text-white primary-bg rounded-lg hidden sm:block mt-4"
+          className="w-full h-[52px] text-white bg-black rounded-lg hidden sm:block mt-4"
         >
           Pesan Sekarang
         </button>

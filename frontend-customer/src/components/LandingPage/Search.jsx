@@ -90,6 +90,7 @@ const Search = () => {
                   name="checkIn"
                   id=""
                   className="bg-form p-4 border-r-[16px] border-r-[#f6f6f6] mt-2"
+                  min={new Date().toISOString().split("T")[0]}
                 ></input>
               </div>
 
@@ -102,7 +103,9 @@ const Search = () => {
                   name="checkIn"
                   id=""
                   className="bg-form p-4 border-r-[16px] border-r-[#f6f6f6] mt-2"
+                  min={new Date().toISOString().split("T")[0]}
                 ></input>
+                
               </div>
             </div>
             <div className="flex justify-between w-full py-5 mt-6 stroke-form-top">

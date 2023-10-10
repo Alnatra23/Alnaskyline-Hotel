@@ -37,7 +37,6 @@ const Form = () => {
         .then((response) => {
           // getMember()
           console.log(response.data);
-          window.alert("Berhasil membuat akun");
           //   clear()
           navigate("/login");
         })
@@ -45,7 +44,7 @@ const Form = () => {
           console.log(error);
         });
     }
-  } 
+  }
 
   return (
     <div className="flex flex-col p-20">

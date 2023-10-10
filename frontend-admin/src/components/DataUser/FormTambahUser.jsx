@@ -137,7 +137,7 @@ const FormTambahUser = () => {
           </div>
         </div>
         <div className="w-full flex">
-            <button className="w-1/2 h-[52px] text-blue primary-stroke rounded-lg hidden sm:block mt-4">
+            <button className="w-1/2 h-[52px] text-black border-2 rounded-lg hidden sm:block mt-4">
             Kembali
             </button>
             <button className="w-1/2 h-[52px] text-white bg-black rounded-lg hidden sm:block mt-4 ml-4">

@@ -7,7 +7,7 @@ const CTA = () => {
         <div className='flex justify-between items-center'>
           <div className='flex flex-col'>
             <h1 className='text-xl font-semibold'>Dapatkan Informasi Terbaru!</h1>
-            <p className='text-gray w-96 mt-4'>Lorem Ipsum is simply dummy text of the printing and typesetting.</p>
+            <p className='text-gray w-96 mt-4'>Jika ingin menerima informasi terbaru masukkan email anda.</p>
           </div>
 
           <form>

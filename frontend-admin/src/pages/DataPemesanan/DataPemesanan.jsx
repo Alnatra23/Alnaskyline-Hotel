@@ -1,11 +1,17 @@
-import React from 'react'
+import React from "react";
 import styles from "../../style";
-import {Navbar, Footer} from '../../components/General';
-import { Table } from '../../components/DataPemesanan';
+import { Navbar, Footer } from "../../components/General";
+import { Table } from "../../components/DataPemesanan";
+import { useEffect } from "react";
 
 const DataPemesanan = () => {
+  useEffect(() => {
+    if ((sessionStorage.getItem("role")) == "admin") {
+      window.location.href = "/dataKamar";
+    }
+  });
   return (
-    <div className="bg-white w-full overflow-hidden"> 
+    <div className="bg-white w-full overflow-hidden">
       <div className={`${styles.paddingX} ${styles.flexCenter}`}>
         <div className={`${styles.boxWidth}`}>
           <Navbar />
@@ -22,9 +28,9 @@ const DataPemesanan = () => {
         <div className={`${styles.boxWidth}`}>
           <Footer />
         </div>
-      </div>  
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default DataPemesanan
+export default DataPemesanan;
