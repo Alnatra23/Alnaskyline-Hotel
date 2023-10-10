@@ -6,7 +6,7 @@ Alnaskyline adalah aplikasi web canggih yang menghadirkan solusi lengkap untuk m
 [![Contributors](https://img.shields.io/github/contributors/YourUsername/Alnaskyline)](https://github.com/YourUsername/Alnaskyline/graphs/contributors)
 [![Issues](https://img.shields.io/github/issues/YourUsername/Alnaskyline)](https://github.com/YourUsername/Alnaskyline/issues)
 
-![Alnaskyline Preview]([/path/to/preview-image.png](https://github.com/Alnatra23/Alnaskyline-Hotel/assets/105399868/22df4deb-3ec4-42cb-ac02-93231b9c6ca8))
+![Alnaskyline Preview](https://github.com/Alnatra23/Alnaskyline-Hotel/assets/105399868/22df4deb-3ec4-42cb-ac02-93231b9c6ca8)
 
 ## Fitur Utama
 
