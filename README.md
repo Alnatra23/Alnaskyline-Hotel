@@ -34,7 +34,6 @@ Alnaskyline adalah aplikasi web yang menghadirkan solusi lengkap untuk manajemen
 - Axios
 - Node.js (untuk server backend)
 - PostgreSQL (atau database lainnya)
-- ...
 
 ## Kontribusi
 
