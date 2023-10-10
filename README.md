@@ -1,12 +1,12 @@
+
 # Alnaskyline - Aplikasi Manajemen Akomodasi
 
-Alnaskyline adalah aplikasi web canggih yang menghadirkan solusi lengkap untuk manajemen akomodasi. Didesain dengan fokus pada pengelolaan data dan reservasi kamar, Alnaskyline cocok digunakan oleh administrator (admin) dan resepsionis (front desk) di industri perhotelan.
+Alnaskyline adalah aplikasi web yang menghadirkan solusi lengkap untuk manajemen akomodasi.Aplikasi ini dirancang untuk memenuhi kebutuhan perhotelan, didesain dengan fokus pada pengelolaan data dan reservasi kamar, Alnaskyline cocok digunakan oleh administrator (admin) dan resepsionis (front desk) di industri perhotelan.
 
-[![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
-[![Contributors](https://img.shields.io/github/contributors/YourUsername/Alnaskyline)](https://github.com/YourUsername/Alnaskyline/graphs/contributors)
-[![Issues](https://img.shields.io/github/issues/YourUsername/Alnaskyline)](https://github.com/YourUsername/Alnaskyline/issues)
-
+# Tampilan Customer
 ![Alnaskyline Preview](https://github.com/Alnatra23/Alnaskyline-Hotel/assets/105399868/22df4deb-3ec4-42cb-ac02-93231b9c6ca8)
+![image](https://github.com/Alnatra23/Alnaskyline-Hotel/assets/105399868/97d031b9-aed1-4395-8779-6273eeebb072)
+
 
 ## Fitur Utama
 
@@ -24,8 +24,8 @@ Alnaskyline adalah aplikasi web canggih yang menghadirkan solusi lengkap untuk m
 
 1. Clone repositori ini: `git clone https://github.com/YourUsername/Alnaskyline.git`
 2. Instal dependensi dengan perintah: `npm install`
-3. Jalankan aplikasi: `npm start`
-4. Akses aplikasi melalui browser di: `http://localhost:3000`
+3. Jalankan Backend aplikasi: `npm start`
+4. Jalankan Frontend aplikasi: `yarn dev`
 
 ## Teknologi Utama
 
@@ -44,13 +44,5 @@ Kami sangat menghargai kontribusi Anda untuk mengembangkan Alnaskyline. Anda dap
 - Buat _pull request_ dengan perbaikan atau fitur baru.
 - Bagikan dan promosikan proyek ini kepada yang lain.
 
-Pastikan untuk membaca panduan kontribusi kami di [CONTRIBUTING.md](CONTRIBUTING.md).
 
-## Lisensi
-
-Proyek ini dilisensikan di bawah [Lisensi MIT](LICENSE). Silakan lihat file [LICENSE](LICENSE) untuk detail lebih lanjut.
-
----
-
-**Alnaskyline** © 2023 - Dibuat dengan ❤️ oleh [Nama Anda](https://github.com/YourUsername)
 
